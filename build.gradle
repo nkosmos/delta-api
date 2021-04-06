@@ -1,0 +1,14 @@
+plugins {
+    id 'java'
+}
+
+group 'me.xtrm.delta'
+version '4.0.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+}
