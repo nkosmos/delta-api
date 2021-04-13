@@ -1,4 +1,4 @@
-package me.xtrm.delta.client.api.data;
+package me.xtrm.delta.client.api.plugin;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

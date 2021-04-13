@@ -10,5 +10,7 @@ repositories {
 }
 
 dependencies {
-
+    /* https://projectlombok.org */
+    compileOnly 'org.projectlombok:lombok:1.18.20'
+    annotationProcessor 'org.projectlombok:lombok:1.18.20'
 }
