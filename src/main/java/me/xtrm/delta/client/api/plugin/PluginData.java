@@ -10,10 +10,8 @@ import java.lang.annotation.Target;
 public @interface PluginData {
 
     /**
-     * @return the module's name
+     * @return the plugin's name
      */
     String name();
-
-
 
 }
