@@ -13,6 +13,6 @@ public @Data class PluginManifest {
     private final String iconFile;
 
     private final String pluginMainFile;
-    private final String[] permissions;
+    private final Permission[] permissions;
 
 }

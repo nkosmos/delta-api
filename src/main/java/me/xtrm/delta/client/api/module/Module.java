@@ -30,14 +30,14 @@ public @interface Module {
 	String description();
 	
 	/**
-	 * @return the module's default key
+	 * @return the module's default keybind
 	 */
 	int keybind() default 0;
 	
 	/**
 	 * @return the module's category
 	 */
-	Category category();
+	String category();
 	
 	/**
 	 * @return the module's default enabled state
