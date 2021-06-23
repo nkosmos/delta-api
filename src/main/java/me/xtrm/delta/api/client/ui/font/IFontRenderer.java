@@ -8,8 +8,8 @@ public interface IFontRenderer {
 
     int getStringWidth(String text);
 
-    void drawString(String text, int x, int y, int color);
+    void drawString(String text, double x, double y, int color);
 
-    void drawStringWithShadow(String text, int x, int y, int color);
+    void drawStringWithShadow(String text, double x, double y, int color);
 
 }
