@@ -1,12 +1,18 @@
 plugins {
     id 'java'
+    id 'maven'
 }
 
 group 'me.xtrm.delta'
-version '4.0.0-SNAPSHOT'
+version '4.0.0-LOCAL'
 
 repositories {
+    mavenLocal()
     mavenCentral()
+
+    maven {
+        url 'https://libraries.minecraft.net/'
+    }
 
     maven {
         url 'https://jitpack.io/'
@@ -31,6 +37,6 @@ dependencies {
     implementation("org.apache.logging.log4j:log4j-api:2.0-beta9")
 
     /* https://projectlombok.org */
-    compileOnly 'org.projectlombok:lombok:1.18.20'
-    annotationProcessor 'org.projectlombok:lombok:1.18.20'
+    compileOnly 'org.projectlombok:lombok:1.18.18'
+    annotationProcessor 'org.projectlombok:lombok:1.18.18'
 }
