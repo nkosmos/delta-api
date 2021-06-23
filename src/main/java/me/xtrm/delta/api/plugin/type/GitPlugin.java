@@ -1,8 +1,8 @@
 package me.xtrm.delta.api.plugin.type;
 
-import me.xtrm.delta.api.plugin.Plugin;
+import me.xtrm.delta.api.plugin.IPlugin;
 
-public interface GitPlugin extends Plugin<GitPlugin> {
+public interface GitPlugin extends IPlugin<GitPlugin> {
 
     String getCurrentRev();
 

@@ -2,13 +2,13 @@ package me.xtrm.delta.api.plugin;
 
 import java.io.File;
 
-public interface Plugin<T extends Plugin<?>> {
+public interface IPlugin<T extends IPlugin<?>> {
 
     File getDataFolder();
 
     PluginManifest getManifest();
 
-    PluginLoader<T> getLoader();
+    IPluginLoader<T> getLoader();
 
     boolean isEnabled();
 

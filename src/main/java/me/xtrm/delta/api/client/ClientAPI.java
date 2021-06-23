@@ -2,25 +2,28 @@ package me.xtrm.delta.api.client;
 
 import fr.shyrogan.post.EventBus;
 import me.xtrm.delta.api.client.command.CommandManager;
-import me.xtrm.delta.api.client.module.ModuleManager;
-import me.xtrm.delta.api.client.setting.SettingManager;
+import me.xtrm.delta.api.client.file.IFileManager;
+import me.xtrm.delta.api.client.friend.IFriendManager;
+import me.xtrm.delta.api.client.module.IModuleManager;
+import me.xtrm.delta.api.client.setting.ISettingManager;
 import me.xtrm.delta.api.client.ui.font.IFontRenderer;
-import me.xtrm.delta.api.client.ui.notification.NotificationManager;
-import me.xtrm.delta.api.launch.transform.TransformerManager;
+import me.xtrm.delta.api.client.ui.notification.INotificationManager;
 
 public interface ClientAPI {
 
     EventBus getEventBus();
 
-    TransformerManager getTweakManager();
+    IFileManager getFileManager();
 
-    ModuleManager getModuleManager();
+    IModuleManager getModuleManager();
 
-    SettingManager getSettingManager();
+    ISettingManager getSettingManager();
 
     CommandManager getCommandManager();
 
-    NotificationManager getNotificationManager();
+    INotificationManager getNotificationManager();
+
+    IFriendManager getFriendManager();
 
     IFontRenderer getFontRenderer(String fontId);
 

@@ -6,7 +6,7 @@ import me.xtrm.delta.api.exception.InvalidPluginException;
 import java.io.File;
 import java.util.List;
 
-public interface PluginLoader<T extends Plugin<?>> {
+public interface IPluginLoader<T extends IPlugin<?>> {
 
     List<T> getLoadedPlugins();
 

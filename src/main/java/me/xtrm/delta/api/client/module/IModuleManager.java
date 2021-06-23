@@ -4,7 +4,7 @@ import me.xtrm.delta.api.exception.InvalidModuleException;
 
 import java.util.List;
 
-public interface ModuleManager {
+public interface IModuleManager {
 
     List<ModuleHandle> getModules();
 

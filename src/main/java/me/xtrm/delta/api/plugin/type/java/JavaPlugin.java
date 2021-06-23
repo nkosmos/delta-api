@@ -1,15 +1,15 @@
 package me.xtrm.delta.api.plugin.type.java;
 
-import me.xtrm.delta.api.plugin.Plugin;
-import me.xtrm.delta.api.plugin.PluginLoader;
+import me.xtrm.delta.api.plugin.IPlugin;
+import me.xtrm.delta.api.plugin.IPluginLoader;
 import me.xtrm.delta.api.plugin.PluginManifest;
 import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 
-public abstract class JavaPlugin implements Plugin<JavaPlugin> {
+public abstract class JavaPlugin implements IPlugin<JavaPlugin> {
 
-    private PluginLoader<JavaPlugin> pluginLoader;
+    private IPluginLoader<JavaPlugin> pluginLoader;
     private Logger logger;
     private File dataFolder;
     private PluginManifest manifest;
@@ -23,7 +23,7 @@ public abstract class JavaPlugin implements Plugin<JavaPlugin> {
         ((PluginClassLoader) classLoader).initialize(this);
     }
 
-    private void init(PluginLoader<JavaPlugin> pluginLoader, Logger logger, PluginClassLoader classLoader) {
+    private void init(IPluginLoader<JavaPlugin> pluginLoader, Logger logger, PluginClassLoader classLoader) {
         this.pluginLoader = pluginLoader;
         this.logger = logger;
         this.delegateClassLoader = classLoader; // bute ma sice
@@ -39,7 +39,7 @@ public abstract class JavaPlugin implements Plugin<JavaPlugin> {
     }
 
     @Override
-    public PluginLoader<JavaPlugin> getLoader() {
+    public IPluginLoader<JavaPlugin> getLoader() {
         return this.pluginLoader;
     }
 

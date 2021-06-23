@@ -2,7 +2,7 @@ package me.xtrm.delta.api.client.friend;
 
 import java.util.List;
 
-public interface FriendManager {
+public interface IFriendManager {
 
     List<FriendData> getFriends();
 
