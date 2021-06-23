@@ -1,4 +1,4 @@
-package me.xtrm.delta.client.api.plugin;
+package me.xtrm.delta.api.plugin;
 
 import lombok.Data;
 

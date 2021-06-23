@@ -7,10 +7,26 @@ version '4.0.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
+
+    maven {
+        url 'https://jitpack.io/'
+    }
 }
 
 dependencies {
     implementation("org.ow2.asm:asm-debug-all:5.0.3")
+
+    implementation('com.google.code.gson:gson:2.2.4')
+
+    implementation('com.github.nkosmos:starboard:1.0.0')
+    implementation('com.github.xTrM-EN:event-spi:1.0.0')
+
+    implementation('com.mojang:brigadier:1.0.17')
+
+    implementation('com.github.Shyrogan:Post:1.1.2') {
+        exclude module: 'asm'
+        exclude module: 'asm-tree'
+    }
 
     implementation("org.apache.logging.log4j:log4j-api:2.0-beta9")
 
