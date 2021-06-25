@@ -5,6 +5,7 @@ import lombok.Data;
 public @Data class PluginManifest {
 
     private final String name;
+    private final String id;
     private final String version;
     private final String author;
 

@@ -1,7 +1,7 @@
 package me.xtrm.delta.api;
 
-import me.xtrm.delta.api.plugin.IPlugin;
 import me.xtrm.delta.api.exception.InvalidDelegationException;
+import me.xtrm.delta.api.plugin.IPlugin;
 
 @FunctionalInterface
 public interface APIProvider {

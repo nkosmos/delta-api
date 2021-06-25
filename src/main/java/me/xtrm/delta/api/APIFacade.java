@@ -1,7 +1,7 @@
 package me.xtrm.delta.api;
 
-import me.xtrm.delta.api.plugin.IPlugin;
 import me.xtrm.delta.api.exception.InvalidDelegationException;
+import me.xtrm.delta.api.plugin.IPlugin;
 
 import java.util.ServiceLoader;
 
@@ -16,7 +16,7 @@ public enum APIFacade {
     }
 
     public API provideApi(IPlugin<?> plugin) throws InvalidDelegationException {
-        if(this.apiProvider == null) {
+        if (this.apiProvider == null) {
             this.apiProvider = providerLoader.iterator().next();
         }
 

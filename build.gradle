@@ -10,17 +10,14 @@ repositories {
     mavenLocal()
     mavenCentral()
 
-    maven {
-        url 'https://libraries.minecraft.net/'
-    }
-
-    maven {
-        url 'https://jitpack.io/'
-    }
+    maven { url 'https://repo.eclipse.org/content/groups/releases/' }
+    maven { url 'https://libraries.minecraft.net/' }
+    maven { url 'https://jitpack.io/' }
+    maven { url 'https://repo.gradle.org/gradle/libs-releases' }
 }
 
 dependencies {
-    implementation("org.ow2.asm:asm-debug-all:5.0.3")
+    implementation('org.ow2.asm:asm-debug-all:5.0.3')
 
     implementation('com.google.code.gson:gson:2.2.4')
 
@@ -34,9 +31,40 @@ dependencies {
         exclude module: 'asm-tree'
     }
 
-    implementation("org.apache.logging.log4j:log4j-api:2.0-beta9")
+    implementation('org.eclipse.jgit:org.eclipse.jgit:5.12.0.202106070339-r')
+    implementation('org.gradle:gradle-tooling-api:4.9')
+    implementation('org.apache.maven.shared:maven-invoker:3.1.0')
+
+    implementation('org.apache.logging.log4j:log4j-api:2.0-beta9')
 
     /* https://projectlombok.org */
     compileOnly 'org.projectlombok:lombok:1.18.18'
     annotationProcessor 'org.projectlombok:lombok:1.18.18'
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
+jar {
+    manifest.attributes(
+            "Specification-Title": "delta-api",
+            "Specification-Version": project.version,
+            "Specification-Vendor": "xTrM_"
+    )
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives sourcesJar
+    archives javadocJar
 }

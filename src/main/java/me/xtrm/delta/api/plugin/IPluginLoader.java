@@ -12,6 +12,6 @@ public interface IPluginLoader<T extends IPlugin<?>> {
 
     T loadPlugin(File pluginFolder) throws InvalidPluginException;
 
-    PluginManifest loadPluginManifest(File manifestFile) throws InvalidManifestException;
+    PluginManifest loadManifest(File manifestFile) throws InvalidManifestException;
 
 }

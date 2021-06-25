@@ -1,4 +1,4 @@
-package me.xtrm.delta.api.plugin.type.java;
+package me.xtrm.delta.api.plugin.java;
 
 import me.xtrm.delta.api.plugin.IPlugin;
 import me.xtrm.delta.api.plugin.IPluginLoader;
@@ -23,7 +23,7 @@ public abstract class JavaPlugin implements IPlugin<JavaPlugin> {
         ((PluginClassLoader) classLoader).initialize(this);
     }
 
-    private void init(IPluginLoader<JavaPlugin> pluginLoader, Logger logger, PluginClassLoader classLoader) {
+    void init(IPluginLoader<JavaPlugin> pluginLoader, Logger logger, PluginClassLoader classLoader) {
         this.pluginLoader = pluginLoader;
         this.logger = logger;
         this.delegateClassLoader = classLoader; // bute ma sice
