@@ -8,6 +8,8 @@ public interface IPluginManager {
 
     void disablePlugin(IPlugin<?> plugin);
 
+    boolean isPluginEnabled(IPlugin<?> plugin);
+
     boolean isPluginLoaded(String name);
 
     IPlugin<?> getPluginByName(String name);

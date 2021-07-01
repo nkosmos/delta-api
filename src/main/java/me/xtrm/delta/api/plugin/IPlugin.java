@@ -10,8 +10,4 @@ public interface IPlugin<T extends IPlugin<?>> {
 
     IPluginLoader<T> getLoader();
 
-    boolean isEnabled();
-
-    boolean setEnabled(boolean state);
-
 }
