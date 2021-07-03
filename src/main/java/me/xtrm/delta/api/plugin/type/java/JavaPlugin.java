@@ -1,5 +1,7 @@
-package me.xtrm.delta.api.plugin.java;
+package me.xtrm.delta.api.plugin.type.java;
 
+import me.xtrm.delta.api.API;
+import me.xtrm.delta.api.APIFacade;
 import me.xtrm.delta.api.plugin.IPlugin;
 import me.xtrm.delta.api.plugin.IPluginLoader;
 import me.xtrm.delta.api.plugin.PluginManifest;
@@ -14,6 +16,7 @@ public abstract class JavaPlugin implements IPlugin<JavaPlugin> {
     private File dataFolder;
     private PluginManifest manifest;
     private PluginClassLoader delegateClassLoader;
+    private API api;
 
     public JavaPlugin() {
         ClassLoader classLoader = getClass().getClassLoader();
@@ -23,41 +26,42 @@ public abstract class JavaPlugin implements IPlugin<JavaPlugin> {
         ((PluginClassLoader) classLoader).initialize(this);
     }
 
-    void init(IPluginLoader<JavaPlugin> pluginLoader, Logger logger, PluginClassLoader classLoader) {
+    final void init(IPluginLoader<JavaPlugin> pluginLoader, Logger logger, PluginClassLoader classLoader) {
         this.pluginLoader = pluginLoader;
         this.logger = logger;
-        this.delegateClassLoader = classLoader; // bute ma sice
+        this.delegateClassLoader = classLoader;
+
+        this.api = APIFacade.INSTANCE.provideApi(this);
     }
 
-    public void onLoad() {
-    }
+    public abstract void onEnable();
 
-    void onEnable() {
-    }
+    public abstract void onDisable();
 
-    void onDisable() {
+    protected final API getApi() {
+        return this.api;
     }
 
     @Override
-    public IPluginLoader<JavaPlugin> getLoader() {
+    public final IPluginLoader<JavaPlugin> getLoader() {
         return this.pluginLoader;
     }
 
-    protected Logger getLogger() {
+    protected final Logger getLogger() {
         return this.logger;
     }
 
     @Override
-    public File getDataFolder() {
+    public final File getDataFolder() {
         return dataFolder;
     }
 
     @Override
-    public PluginManifest getManifest() {
+    public final PluginManifest getManifest() {
         return manifest;
     }
 
-    public PluginClassLoader getDelegateClassLoader() {
+    public final PluginClassLoader getDelegateClassLoader() {
         return delegateClassLoader;
     }
 }

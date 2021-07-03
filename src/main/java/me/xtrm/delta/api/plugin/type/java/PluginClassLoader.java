@@ -1,4 +1,4 @@
-package me.xtrm.delta.api.plugin.java;
+package me.xtrm.delta.api.plugin.type.java;
 
 import me.xtrm.delta.api.plugin.IPluginLoader;
 import org.apache.logging.log4j.Logger;
