@@ -12,9 +12,9 @@ public interface API {
 
     IPluginManager getPluginManager();
 
-    ClientAPI getClientAPI();
+    ClientAPI getClient();
 
-    LauncherAPI getLauncherAPI();
+    LauncherAPI getLauncher();
 
     ScriptAPI getScriptAPI();
 

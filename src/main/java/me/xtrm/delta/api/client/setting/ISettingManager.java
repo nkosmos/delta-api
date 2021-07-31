@@ -1,13 +1,13 @@
 package me.xtrm.delta.api.client.setting;
 
+import fr.nkosmos.starboard.Group;
 import fr.nkosmos.starboard.Setting;
-import fr.nkosmos.starboard.SettingGroup;
 
 import java.util.List;
 
-public interface ISettingManager extends SettingGroup.RegistrationListener {
+public interface ISettingManager {
 
-    List<SettingGroup> getGroups();
+    List<Group> getGroups();
 
     List<Setting<?>> getSettings();
 

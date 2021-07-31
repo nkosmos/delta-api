@@ -1,5 +1,5 @@
 plugins {
-    id 'java'
+    id 'java-library'
     id 'maven'
 }
 
@@ -17,16 +17,16 @@ repositories {
 }
 
 dependencies {
-    implementation('org.ow2.asm:asm-debug-all:5.0.3')
+    api('org.ow2.asm:asm-debug-all:5.0.3')
 
-    implementation('com.google.code.gson:gson:2.2.4')
+    api('com.google.code.gson:gson:2.2.4')
 
-    implementation('com.github.nkosmos:starboard:1.0.0')
-    implementation('com.github.xTrM-EN:event-spi:1.0.0')
+    api('com.github.nkosmos:starboard:1.2.0')
+    api('com.github.xTrM-EN:event-spi:1.0.0')
 
-    implementation('com.mojang:brigadier:1.0.17')
+    api('com.mojang:brigadier:1.0.17')
 
-    implementation('com.github.Shyrogan:Post:1.1.2') {
+    api('com.github.Shyrogan:Post:1.1.2') {
         exclude module: 'asm'
         exclude module: 'asm-tree'
     }
@@ -35,11 +35,11 @@ dependencies {
     implementation('org.gradle:gradle-tooling-api:4.9')
     implementation('org.apache.maven.shared:maven-invoker:3.1.0')
 
-    implementation('org.apache.logging.log4j:log4j-api:2.0-beta9')
+    api('org.apache.logging.log4j:log4j-api:2.0-beta9')
 
     /* https://projectlombok.org */
-    compileOnly 'org.projectlombok:lombok:1.18.18'
-    annotationProcessor 'org.projectlombok:lombok:1.18.18'
+    compileOnly 'org.projectlombok:lombok:1.18.20'
+    annotationProcessor 'org.projectlombok:lombok:1.18.20'
 }
 
 tasks.withType(JavaCompile) {

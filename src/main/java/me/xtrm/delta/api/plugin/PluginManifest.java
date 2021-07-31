@@ -4,6 +4,10 @@ import lombok.Data;
 
 public @Data class PluginManifest {
 
+    public static final int MANIFEST_VERSION = 1;
+
+    private final int manifestVersion;
+
     private final String name;
     private final String id;
     private final String version;

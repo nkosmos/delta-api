@@ -38,7 +38,7 @@ public abstract class JavaPlugin implements IPlugin<JavaPlugin> {
 
     public abstract void onDisable();
 
-    protected final API getApi() {
+    protected final API getAPI() {
         return this.api;
     }
 
