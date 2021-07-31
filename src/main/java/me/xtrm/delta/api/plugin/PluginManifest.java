@@ -13,7 +13,7 @@ public @Data class PluginManifest {
     private final String version;
     private final String author;
 
-    private final String sourceUrl;
+    private final String repo;
 
     private final String iconFile;
 
