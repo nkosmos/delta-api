@@ -1,5 +1,7 @@
 package me.xtrm.delta.api.plugin;
 
+import me.xtrm.delta.api.plugin.manifest.PluginManifest;
+
 import java.util.Collection;
 
 public interface IPluginManager {

@@ -7,12 +7,9 @@ import lombok.RequiredArgsConstructor;
 @Getter
 public enum Permission {
 
-    TWEAKING("Tweaking"),
-
+    HTTP_REQUESTS("HTTP Requests"),
+    REMOTE_NETWORK("Websocket"),
     FILESYSTEM("Filesystem"),
-    NETWORKING("Networking"),
-    REFLECTION("Reflection"),
-
     NSFW("NSFW");
 
     private final String permissionName;

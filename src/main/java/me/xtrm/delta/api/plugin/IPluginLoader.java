@@ -2,6 +2,7 @@ package me.xtrm.delta.api.plugin;
 
 import me.xtrm.delta.api.exception.InvalidManifestException;
 import me.xtrm.delta.api.exception.InvalidPluginException;
+import me.xtrm.delta.api.plugin.manifest.PluginManifest;
 
 import java.io.File;
 import java.util.List;

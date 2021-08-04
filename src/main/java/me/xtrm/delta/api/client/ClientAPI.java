@@ -1,7 +1,7 @@
 package me.xtrm.delta.api.client;
 
 import fr.shyrogan.post.EventBus;
-import me.xtrm.delta.api.client.command.CommandManager;
+import me.xtrm.delta.api.client.command.ICommandManager;
 import me.xtrm.delta.api.client.file.IFileManager;
 import me.xtrm.delta.api.client.friend.IFriendManager;
 import me.xtrm.delta.api.client.module.IModuleManager;
@@ -11,6 +11,9 @@ import me.xtrm.delta.api.client.ui.notification.INotificationManager;
 
 public interface ClientAPI {
 
+    /**
+     * @return an {@link EventBus} instance
+     */
     EventBus getEventBus();
 
     IFileManager getFileManager();
@@ -19,7 +22,7 @@ public interface ClientAPI {
 
     ISettingManager getSettingManager();
 
-    CommandManager getCommandManager();
+    ICommandManager getCommandManager();
 
     INotificationManager getNotificationManager();
 

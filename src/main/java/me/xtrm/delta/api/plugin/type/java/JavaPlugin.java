@@ -4,7 +4,7 @@ import me.xtrm.delta.api.API;
 import me.xtrm.delta.api.APIFacade;
 import me.xtrm.delta.api.plugin.IPlugin;
 import me.xtrm.delta.api.plugin.IPluginLoader;
-import me.xtrm.delta.api.plugin.PluginManifest;
+import me.xtrm.delta.api.plugin.manifest.PluginManifest;
 import org.apache.logging.log4j.Logger;
 
 import java.io.File;

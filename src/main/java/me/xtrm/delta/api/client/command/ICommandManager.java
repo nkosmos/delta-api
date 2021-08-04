@@ -1,4 +1,4 @@
 package me.xtrm.delta.api.client.command;
 
-public interface CommandManager {
+public interface ICommandManager {
 }

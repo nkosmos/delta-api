@@ -1,16 +1,19 @@
 package me.xtrm.delta.api.client.file;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.Collection;
+import java.util.Set;
 
 public interface IFileManager {
 
-    List<DataFile> getDataFiles();
+    <T> void registerHandler(Class<T> clazz, IDataHandler<T> dataHandler);
 
-    void registerDataFile(DataFile dataFile);
+    <T> void save(T instance) throws IOException;
 
-    void saveFiles() throws IOException;
+    <T> T load(Class<T> clazz) throws IOException;
 
-    void loadFiles() throws IOException;
+    Set<Class<?>> getHandledTypes();
+
+    Collection<IDataHandler<?>> getDataHandlers();
 
 }

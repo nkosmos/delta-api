@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface IModuleManager {
 
-    List<ModuleHandle> getModules();
+    void addModule(IModule module) throws InvalidModuleException;
 
-    void addModule(Object moduleObject) throws InvalidModuleException;
+    List<IModule> getModules();
 
 }
