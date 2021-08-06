@@ -1,8 +1,10 @@
 package me.xtrm.delta.api.client.friend;
 
+import me.xtrm.delta.api.client.file.ISavable;
+
 import java.util.List;
 
-public interface IFriendManager {
+public interface IFriendManager extends ISavable {
 
     List<FriendData> getFriends();
 

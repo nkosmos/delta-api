@@ -2,12 +2,12 @@ package me.xtrm.delta.api.client.setting;
 
 import fr.nkosmos.starboard.Group;
 import fr.nkosmos.starboard.Setting;
+import me.xtrm.delta.api.client.file.ISavable;
 import me.xtrm.delta.api.client.module.IModule;
-import me.xtrm.delta.api.client.module.IModuleManager;
 
 import java.util.List;
 
-public interface ISettingManager {
+public interface ISettingManager extends ISavable {
 
     List<Group> getGroups();
 
@@ -22,7 +22,5 @@ public interface ISettingManager {
     }
 
     List<Setting<?>> getSettings();
-
-    IModuleManager getModuleManager();
 
 }
