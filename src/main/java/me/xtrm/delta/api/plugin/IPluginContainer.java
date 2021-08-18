@@ -2,7 +2,7 @@ package me.xtrm.delta.api.plugin;
 
 import fr.nkosmos.starboard.special.Range;
 import me.xtrm.delta.api.plugin.manifest.PluginManifest;
-import me.xtrm.mcversioning.MCVersion;
+import me.xtrm.mcversioning.SementicVersion;
 
 import java.io.File;
 
@@ -27,6 +27,6 @@ public interface IPluginContainer {
     IPluginLoader getLoader();
 
     // TODO: better range support + toolchain + platform
-    Range<MCVersion> getSupportRange();
+    Range<SementicVersion> getSupportRange();
 
 }

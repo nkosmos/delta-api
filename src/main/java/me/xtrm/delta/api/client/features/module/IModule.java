@@ -1,13 +1,9 @@
 package me.xtrm.delta.api.client.features.module;
 
-import fr.nkosmos.starboard.Group;
-import fr.nkosmos.starboard.IGroupParent;
+import fr.nkosmos.starboard.api.IGroup;
 import me.xtrm.delta.api.client.ui.IAnimationProvider;
 
-import java.util.Collections;
-import java.util.List;
-
-public interface IModule extends IGroupParent {
+public interface IModule {
 
     String getId();
 
@@ -25,7 +21,7 @@ public interface IModule extends IGroupParent {
 
     boolean isVisible();
 
-    Group getRootGroup();
+    IGroup getRootGroup();
 
     void setDisplayName(String displayName);
 
@@ -42,13 +38,4 @@ public interface IModule extends IGroupParent {
 
     //TODO: move this out god
     IAnimationProvider getDisplayAnimation();
-
-    default IGroupParent getGroupParent() {
-        return null;
-    }
-
-    @Override
-    default List<Group> getSubgroups() {
-        return Collections.singletonList(getRootGroup());
-    }
 }

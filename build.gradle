@@ -17,24 +17,25 @@ repositories {
 }
 
 dependencies {
-    implementation('org.ow2.asm:asm-debug-all:5.0.3')
-    implementation('org.apache.logging.log4j:log4j-api:2.0-beta9')
-    implementation('com.google.code.gson:gson:2.2.4')
+    implementation 'org.ow2.asm:asm-debug-all:5.0.3'
+    implementation 'org.apache.logging.log4j:log4j-api:2.0-beta9'
+    implementation 'com.google.code.gson:gson:2.2.4'
 
-    api('com.github.xTrM-EN:mcversioning:d4cfee16af')
-    api('com.github.nkosmos:starboard:31db54bd0f')
-    api('com.github.xTrM-EN:event-spi:1.0.0')
+    api 'com.github.nkosmos:starlink-spi:1.1.0'
+    api 'com.github.xTrM-EN:mcversioning:4ea7d223b0'
+    api 'com.github.nkosmos:starboard:1.5.1'
+    api 'com.github.xTrM-EN:event-spi:1.0.0'
 
-    api('com.mojang:brigadier:1.0.17')
+    api 'com.mojang:brigadier:1.0.17'
 
     api('com.github.Shyrogan:Post:1.1.2') {
         exclude module: 'asm'
         exclude module: 'asm-tree'
     }
 
-    api('org.eclipse.jgit:org.eclipse.jgit:5.12.0.202106070339-r')
-    api('org.gradle:gradle-tooling-api:4.9')
-    api('org.apache.maven.shared:maven-invoker:3.1.0')
+    api 'org.eclipse.jgit:org.eclipse.jgit:5.12.0.202106070339-r'
+    api 'org.gradle:gradle-tooling-api:4.9'
+    api 'org.apache.maven.shared:maven-invoker:3.1.0'
 
     /* https://projectlombok.org */
     compileOnly 'org.projectlombok:lombok:1.18.20'
