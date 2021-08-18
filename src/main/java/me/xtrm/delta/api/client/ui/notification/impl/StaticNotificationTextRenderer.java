@@ -8,6 +8,7 @@ public class StaticNotificationTextRenderer implements INotificationTextRenderer
 
     private final String title;
     private final String content;
+    private final long startTime;
 
     @Override
     public String getTitle(long renderTime) {

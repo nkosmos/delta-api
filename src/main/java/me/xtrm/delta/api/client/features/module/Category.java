@@ -7,7 +7,7 @@ import java.util.List;
 
 public @Data class Category {
 
-    private static List<Category> REGISTRY = new ArrayList<>();
+    private static final List<Category> REGISTRY = new ArrayList<>();
 
     public static final Category COMBAT = new Category("Combat", '4');
     public static final Category MOVEMENT = new Category("Movement", 's');
