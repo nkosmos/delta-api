@@ -1,12 +1,11 @@
-package me.xtrm.delta.api.client.module;
+package me.xtrm.delta.api.client.features.module;
 
 import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public @Data
-class Category {
+public @Data class Category {
 
     private static List<Category> REGISTRY = new ArrayList<>();
 
@@ -15,7 +14,7 @@ class Category {
     public static final Category PLAYER = new Category("Player", 'u');
     public static final Category RENDER = new Category("Render", 't');
     public static final Category WORLD = new Category("World", 'p');
-    public static final Category MISC = new Category("Misc", 'i');
+    public static final Category MISCELLANEOUS = new Category("Miscellaneous", 'i');
     public static final Category HIDDEN = new Category("Hidden", '?', false);
 
     private final String name;
@@ -40,5 +39,9 @@ class Category {
 
     public static Category fromName(String name) {
         return REGISTRY.stream().filter(category -> category.getName().equalsIgnoreCase(name)).findFirst().orElse(null);
+    }
+
+    public static List<Category> toCollection() {
+        return REGISTRY;
     }
 }

@@ -7,7 +7,7 @@ public interface PluginClassLoader {
 
     void initialize(JavaPlugin javaPlugin);
 
-    default void init0(JavaPlugin javaPlugin, IPluginLoader<JavaPlugin> pluginLoader, Logger logger, PluginClassLoader classLoader) {
+    default void init0(JavaPlugin javaPlugin, IPluginLoader pluginLoader, Logger logger, PluginClassLoader classLoader) {
         javaPlugin.init(pluginLoader, logger, classLoader);
     }
 

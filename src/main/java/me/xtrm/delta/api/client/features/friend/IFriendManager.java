@@ -1,6 +1,6 @@
-package me.xtrm.delta.api.client.friend;
+package me.xtrm.delta.api.client.features.friend;
 
-import me.xtrm.delta.api.client.file.ISavable;
+import me.xtrm.delta.api.client.features.file.ISavable;
 
 import java.util.List;
 

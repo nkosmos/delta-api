@@ -1,4 +1,4 @@
-package me.xtrm.delta.api.client.file;
+package me.xtrm.delta.api.client.features.file;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

@@ -1,4 +1,4 @@
-package me.xtrm.delta.api.plugin;
+package me.xtrm.delta.api.plugin.manifest;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

@@ -1,27 +1,17 @@
 package me.xtrm.delta.api.plugin;
 
-import me.xtrm.delta.api.plugin.manifest.PluginManifest;
-
-import java.util.Collection;
-
 public interface IPluginManager {
 
-    void enablePlugin(IPlugin<?> plugin);
+    void enable(IPluginContainer plugin);
 
-    void disablePlugin(IPlugin<?> plugin);
+    void disable(IPluginContainer plugin);
 
-    boolean isPluginEnabled(IPlugin<?> plugin);
+    boolean isEnabled(IPluginContainer plugin);
 
-    boolean isPluginLoaded(String name);
+    boolean isLoaded(String name);
 
-    IPlugin<?> getPluginByName(String name);
+    IPluginContainer getByName(String name);
 
-    IPlugin<?> getPluginById(String id);
-
-    PluginManifest getPluginManifest(IPlugin<?> plugin);
-
-    Collection<IPlugin<?>> getPlugins();
-
-    Collection<PluginManifest> getPluginManifests();
+    IPluginContainer getById(String id);
 
 }

@@ -2,7 +2,9 @@ package me.xtrm.delta.api.client.ui.font;
 
 public interface IFontRenderer {
 
-    String getRendererName();
+    default String getRendererName() {
+        return "Vanilla";
+    }
 
     int getFontHeight();
 

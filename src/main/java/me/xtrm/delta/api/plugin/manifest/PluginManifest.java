@@ -3,7 +3,6 @@ package me.xtrm.delta.api.plugin.manifest;
 import com.google.gson.Gson;
 import lombok.Data;
 import lombok.SneakyThrows;
-import me.xtrm.delta.api.plugin.Permission;
 
 import java.io.File;
 import java.io.FileReader;

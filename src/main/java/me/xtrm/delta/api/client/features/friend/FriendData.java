@@ -1,4 +1,4 @@
-package me.xtrm.delta.api.client.friend;
+package me.xtrm.delta.api.client.features.friend;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

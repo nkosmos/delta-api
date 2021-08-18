@@ -1,5 +1,6 @@
-package me.xtrm.delta.api.client.file;
+package me.xtrm.delta.api.client.features.file;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Set;
@@ -16,4 +17,5 @@ public interface IFileManager {
 
     Collection<IDataHandler<?>> getDataHandlers();
 
+    File getRootFolder();
 }
