@@ -2,14 +2,14 @@ package me.xtrm.delta.api.client.features.module;
 
 import lombok.Data;
 import me.xtrm.delta.api.client.features.file.ISavable;
-import me.xtrm.delta.api.client.registry.PluginBasedRegistry;
+import me.xtrm.delta.api.client.registry.NamedPluginBasedRegistry;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public interface IModuleManager extends ISavable {
 
-    PluginBasedRegistry<IModule> MODULE_REGISTRY = new PluginBasedRegistry<IModule>() {
+    NamedPluginBasedRegistry<IModule> MODULE_REGISTRY = new NamedPluginBasedRegistry<IModule>() {
         @Override
         public <V extends IModule> V getByName(String name) {
             return name == null ? null : (V) this.registryMap.values()

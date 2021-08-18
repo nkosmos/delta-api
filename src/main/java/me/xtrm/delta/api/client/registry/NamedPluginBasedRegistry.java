@@ -9,17 +9,17 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
- * {@link IRegistry} implementation based on {@link IPluginContainer}s.
+ * {@link IRegistry} implementation based on {@link IPluginContainer}s,
+ * using a {@code String} as the key.
  *
- * @param <K> the registry key
  * @param <V> the registry item
  */
-public class PluginBasedRegistry<K, V> implements IRegistry<IPluginContainer, K, V> {
-    protected final Map<IPluginContainer, Map<K, V>> registryMap = Maps.newHashMap();
+public class NamedPluginBasedRegistry<V> implements IRegistry<IPluginContainer, String, V> {
+    protected final Map<IPluginContainer, Map<String, V>> registryMap = Maps.newHashMap();
 
     @Override
-    public void put(IPluginContainer plugin, K name, V value) {
-        Map<K, V> registryMapping = registryMap.computeIfAbsent(plugin, p -> Maps.newHashMap());
+    public void put(IPluginContainer plugin, String name, V value) {
+        Map<String, V> registryMapping = registryMap.computeIfAbsent(plugin, p -> Maps.newHashMap());
 
         if (registryMapping.containsKey(name)) {
             throw new IllegalArgumentException(String.format("Key %s already exists in registry!", name));
@@ -57,12 +57,13 @@ public class PluginBasedRegistry<K, V> implements IRegistry<IPluginContainer, K,
     }
 
     @Override
-    public Map<K, V> getAllFor(IPluginContainer plugin) {
+    public Map<String, V> getAllFor(IPluginContainer plugin) {
         return this.registryMap.computeIfAbsent(plugin, p -> Maps.newHashMap());
     }
 
     @Override
-    public Map<IPluginContainer, Map<K, V>> getRegistryMap() {
+    public Map<IPluginContainer, Map<String, V>> getRegistryMap() {
         return ImmutableMap.copyOf(this.registryMap);
     }
+
 }
