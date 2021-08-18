@@ -4,13 +4,13 @@ import fr.nkosmos.starboard.api.IGroup;
 import fr.nkosmos.starboard.api.ISetting;
 import me.xtrm.delta.api.client.features.file.ISavable;
 import me.xtrm.delta.api.client.features.module.IModule;
-import me.xtrm.delta.api.client.registry.NamedPluginBasedRegistry;
+import me.xtrm.delta.api.client.registry.PluginBasedRegistry;
 
 import java.util.List;
 
 public interface ISettingManager extends ISavable {
 
-    NamedPluginBasedRegistry<IGroup> SETTING_GROUP_REGISTRY = new NamedPluginBasedRegistry<>();
+    PluginBasedRegistry<IModule, IGroup> ROOT_GROUPS_REGISTRY = new PluginBasedRegistry<>();
 
     List<ISetting<?>> getForGroup(IGroup group, boolean subgroups);
 
