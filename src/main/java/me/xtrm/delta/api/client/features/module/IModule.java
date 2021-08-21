@@ -1,7 +1,7 @@
 package me.xtrm.delta.api.client.features.module;
 
 import fr.nkosmos.starboard.api.IGroup;
-import me.xtrm.delta.api.client.ui.IAnimationProvider;
+import me.xtrm.delta.api.client.ui.animation.IAnimationContainer;
 
 public interface IModule {
 
@@ -37,5 +37,5 @@ public interface IModule {
     void toggle();
 
     //TODO: move this out god
-    IAnimationProvider getDisplayAnimation();
+    IAnimationContainer getDisplayAnimation();
 }

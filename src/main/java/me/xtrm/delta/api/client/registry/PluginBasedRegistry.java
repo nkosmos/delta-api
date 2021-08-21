@@ -18,14 +18,14 @@ public class PluginBasedRegistry<K, V> implements IRegistry<IPluginContainer, K,
     protected final Map<IPluginContainer, Map<K, V>> registryMap = Maps.newHashMap();
 
     @Override
-    public void put(IPluginContainer plugin, K name, V value) {
+    public void put(IPluginContainer plugin, K key, V value) {
         Map<K, V> registryMapping = registryMap.computeIfAbsent(plugin, p -> Maps.newHashMap());
 
-        if (registryMapping.containsKey(name)) {
-            throw new IllegalArgumentException(String.format("Key %s already exists in registry!", name));
+        if (registryMapping.containsKey(key)) {
+            throw new IllegalArgumentException(String.format("Key %s already exists in registry!", key));
         }
 
-        registryMapping.put(name, value);
+        registryMapping.put(key, value);
     }
 
     @Override
