@@ -11,6 +11,7 @@ import me.xtrm.delta.api.client.ui.animation.IAnimationContainer;
 import me.xtrm.delta.api.client.ui.color.ColorMode;
 import me.xtrm.delta.api.client.ui.context.RenderContext;
 import me.xtrm.delta.api.client.ui.context.Resolution;
+import me.xtrm.delta.api.client.ui.draw.DrawingBoard;
 import me.xtrm.delta.api.client.ui.font.EnumFont;
 import me.xtrm.delta.api.client.ui.font.IFontRenderer;
 import me.xtrm.delta.api.client.ui.hud.HudAlignment;
@@ -25,6 +26,7 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 @Getter
+@NoArgsConstructor
 public class ArrayListElement implements IMovableElement, IAlignableElement {
 
     private final Group rootGroup = new Group("root", null, true);
@@ -32,6 +34,7 @@ public class ArrayListElement implements IMovableElement, IAlignableElement {
     public final Setting<EnumFont> font = new Setting<>(rootGroup, "Font", EnumFont.NORMAL).callback(this::updateFontRenderer);
     public final Setting<Boolean> dropShadow = new Setting<>(rootGroup, "Shadow", true);
     public final Setting<Boolean> background = new Setting<>(rootGroup, "Background", true);
+    public final Setting<Color> backgroundColor = new Setting<>(rootGroup, "Background Color", new Color(255, 255, 255, 120)).onlyIf(background);
     public final Setting<Boolean> animation = new Setting<>(rootGroup, "Animation", true);
     //public final Setting<AnimationType> animationType = new Setting<>(rootGroup, "Animation Type", true).values(AnimationType.values()).onlyIf(animation);
 
@@ -61,6 +64,13 @@ public class ArrayListElement implements IMovableElement, IAlignableElement {
     private int perModuleWidthOffset = 0;
     private int perModuleHeightOffset = 0;
 
+    public ArrayListElement(int x, int y, ColorMode borderColorMode) {
+        this.x = x;
+        this.y = y;
+
+        this.borderColorMode.set(borderColorMode);
+    }
+
     @Override
     public HudAlignment getAlignment() {
         return this.cachedRenderContext == null ? HudAlignment.TOP_LEFT : HudAlignment.fromPosition(this.cachedRenderContext, x, y);
@@ -84,33 +94,48 @@ public class ArrayListElement implements IMovableElement, IAlignableElement {
         this.toRender.sort(Comparator.<IModule>comparingInt(m -> cachedFontRenderer.getStringWidth(m.getDisplayName())).reversed());
 
         Resolution resolution = this.cachedRenderContext.getResolution();
+        DrawingBoard drawBoard = this.cachedRenderContext.getDrawingBoard();
 
         HudAlignment alignment = getAlignment();
         int xOffset = alignment.getXOffset();
         int yOffset = alignment.getYOffset();
-        int startX = xOffset > 0 ? resolution.getWidth() : 0;
+        int x1 = xOffset > 0 ? resolution.getWidth() : 0;
 
         perModuleWidthOffset = border.get() ? 6 : 2;
         perModuleHeightOffset = 2;
 
         int fontHeight = this.cachedFontRenderer.getFontHeight();
-        int yIncrements = fontHeight + perModuleHeightOffset;
+        int height = (fontHeight + perModuleHeightOffset) * yOffset;
 
         int y1 = 0;
+
+        cachedFontRenderer.drawString(alignment.getName(), 2, 50, -1);
+        cachedFontRenderer.drawString(String.valueOf(x1), 2, 60, -1);
+        cachedFontRenderer.drawString(String.valueOf(y1), 2, 70, -1);
+        cachedFontRenderer.drawString(String.valueOf(xOffset), 70, 60, -1);
+        cachedFontRenderer.drawString(String.valueOf(yOffset), 70, 70, -1);
+
+        cachedFontRenderer.drawString(String.valueOf(toRender.size()), 2, 80, -1);
 
         for (int count = 0; count < this.toRender.size(); count++) {
             IModule module = this.toRender.get(count);
             IAnimationContainer animation = module.getDisplayAnimation();
             int textWidth = this.cachedFontRenderer.getStringWidth(module.getDisplayName());
 
+            if (!animation.isFinished()) {
+                animation.update();
+            }
+
             float animationValue = animation.getValue(!module.isEnabled());
 
-            int x2 = startX + ((textWidth + perModuleWidthOffset) * xOffset);
-            int y2 = y1 + (yIncrements * yOffset);
+            double width = (((textWidth + perModuleWidthOffset)) * animationValue);
 
+            double x2 = x1 + (width * xOffset);
+            double y2 = y1 + height;
 
+            drawBoard.rect(x1, y1, x2, y2, backgroundColor.get().getRGB());
 
-            y1 += animationValue * yIncrements;
+            y1 += animationValue * height;
         }
     }
 
@@ -126,11 +151,11 @@ public class ArrayListElement implements IMovableElement, IAlignableElement {
         me.accept(daddy.get());
     }
 
-    private static Supplier<Cum> you(){
+    private static Supplier<Cum> you() {
         return Cum::new;
     }
 
-    private static Consumer<Cum> xtrm(){
+    private static Consumer<Cum> xtrm() {
         return c -> System.out.println(c.amount);
     }
 

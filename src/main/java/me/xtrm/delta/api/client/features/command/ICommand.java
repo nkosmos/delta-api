@@ -6,7 +6,7 @@ import java.util.function.Consumer;
 
 public interface ICommand {
 
-    void register(CommandContextBuilder<Source> contextBuilder);
+    void appendTo(CommandContextBuilder<Source> contextBuilder);
 
     @FunctionalInterface
     interface Source extends Consumer<String> {}

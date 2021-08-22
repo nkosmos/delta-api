@@ -21,8 +21,6 @@ dependencies {
     implementation 'org.apache.logging.log4j:log4j-api:2.0-beta9'
     implementation 'com.google.code.gson:gson:2.2.4'
 
-    api 'com.github.KNOXDEV:feather:lwjgl2-fc744e5d5e'
-
     api 'com.github.MeteorDevelopment:starscript:0.1.5'
 
     api 'com.github.nkosmos:starlink-spi:1.1.0'

@@ -5,6 +5,7 @@ import fr.nkosmos.starboard.Setting;
 import fr.nkosmos.starboard.api.ISetting;
 import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import me.xtrm.delta.api.client.ui.color.ColorMode;
 import me.xtrm.delta.api.client.ui.context.RenderContext;
@@ -18,6 +19,7 @@ import meteordevelopment.starscript.compiler.Parser;
 import java.awt.*;
 
 @Getter
+@NoArgsConstructor
 public class TextElement implements IMovableElement {
 
     private final Group rootGroup = new Group("root", null, true);
@@ -40,11 +42,12 @@ public class TextElement implements IMovableElement {
     @Setter
     private int y;
 
-    public TextElement(String text, int x, int y, EnumFont font, boolean shadow, boolean background, Color color) {
+    public TextElement(String text, int x, int y, EnumFont font, boolean shadow, boolean background, ColorMode colorMode, Color color) {
         this.text.set(text);
         this.font.set(font);
         this.dropShadow.set(shadow);
         this.background.set(background);
+        this.textColorMode.set(colorMode);
         this.textCustomColor.set(color);
 
         this.x = x;
@@ -71,12 +74,13 @@ public class TextElement implements IMovableElement {
         this.cachedFontRenderer.drawString(output, x, y, context.getColorProvider().getColor(textColorMode.get(), textCustomColor.get()).getRGB(), dropShadow.get());
     }
 
-    private void updateText(ISetting<String> text, String oldValue) {
-        Parser.Result result = Parser.parse(text.get());
+    private void updateText(ISetting<String> text, String newValue) {
+        Parser.Result result = Parser.parse(newValue);
 
         if (!result.hasErrors()) {
             this.script = Compiler.compile(result);
         } else {
+            result.errors.forEach(System.out::println);
             this.script = null;
         }
     }
