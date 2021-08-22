@@ -1,4 +1,4 @@
-package me.xtrm.delta.api.client.ui.hud.impl;
+package me.xtrm.delta.api.client.ui.hud.defaults;
 
 import fr.nkosmos.starboard.Group;
 import fr.nkosmos.starboard.Setting;
@@ -6,6 +6,7 @@ import fr.nkosmos.starboard.api.ISetting;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
+import me.xtrm.delta.api.client.ui.color.ColorMode;
 import me.xtrm.delta.api.client.ui.context.RenderContext;
 import me.xtrm.delta.api.client.ui.font.EnumFont;
 import me.xtrm.delta.api.client.ui.font.IFontRenderer;
@@ -21,17 +22,18 @@ public class TextElement implements IMovableElement {
 
     private final Group rootGroup = new Group("root", null, true);
 
-    private final Setting<String> text = new Setting<>(rootGroup, "Text", "Default text").callback(this::updateText);
-    private final Setting<EnumFont> font = new Setting<>(rootGroup, "Font", EnumFont.NORMAL).values(EnumFont.values()).callback(this::updateFontRenderer);
-    private final Setting<Boolean> dropShadow = new Setting<>(rootGroup, "Shadow", true);
-    private final Setting<Boolean> background = new Setting<>(rootGroup, "Background", true);
-    public final Setting<Color> color = new Setting<>(rootGroup, "Color", new Color(255, 255, 255, 255));
+    public final Setting<String> text = new Setting<>(rootGroup, "Text", "Default text").callback(this::updateText);
+    public final Setting<EnumFont> font = new Setting<>(rootGroup, "Font", EnumFont.NORMAL).values(EnumFont.values()).callback(this::updateFontRenderer);
+    public final Setting<Boolean> dropShadow = new Setting<>(rootGroup, "Shadow", true);
+    public final Setting<Boolean> background = new Setting<>(rootGroup, "Background", true);
+    public final Setting<ColorMode> textColorMode = new Setting<>(rootGroup, "Text Color Mode", ColorMode.CUSTOM).values(ColorMode.values());
+    public final Setting<Color> textCustomColor = new Setting<>(rootGroup, "Text Color", new Color(255, 255, 255, 255)).onlyIf(textColorMode.get()::isCustomizable);
 
     @Getter(AccessLevel.PRIVATE)
     private Script script;
 
     @Getter(AccessLevel.PRIVATE)
-    private IFontRenderer fontRenderer;
+    private IFontRenderer cachedFontRenderer;
 
     @Setter
     private int x;
@@ -43,7 +45,7 @@ public class TextElement implements IMovableElement {
         this.font.set(font);
         this.dropShadow.set(shadow);
         this.background.set(background);
-        this.color.set(color);
+        this.textCustomColor.set(color);
 
         this.x = x;
         this.y = y;
@@ -51,7 +53,7 @@ public class TextElement implements IMovableElement {
 
     @Override
     public String getName() {
-        return "Text Element" + (text.get() != null ? " (" + text + ")" : "");
+        return "Text" + (text.get() != null ? ": " + text : "");
     }
 
     @Override
@@ -61,11 +63,12 @@ public class TextElement implements IMovableElement {
             output = context.getRenderStarscript().run(script);
         }
 
-        if(fontRenderer == null) {
+        if(this.cachedFontRenderer == null) {
             EnumFont font = this.font.get();
-            fontRenderer = context.getFontProvider().getFontRenderer(font);
+            this.cachedFontRenderer = context.getFontProvider().getFontRenderer(font);
         }
-        fontRenderer.drawString(output, x, y, color.get().getRGB(), dropShadow.get());
+
+        this.cachedFontRenderer.drawString(output, x, y, context.getColorProvider().getColor(textColorMode.get(), textCustomColor.get()).getRGB(), dropShadow.get());
     }
 
     private void updateText(ISetting<String> text, String oldValue) {
@@ -79,16 +82,17 @@ public class TextElement implements IMovableElement {
     }
 
     private void updateFontRenderer(ISetting<EnumFont> font, EnumFont oldValue) {
-        fontRenderer = null;
+        this.cachedFontRenderer = null;
     }
 
     @Override
     public int getWidth() {
-        return fontRenderer == null ? 0 : fontRenderer.getStringWidth(text.get());
+        return this.cachedFontRenderer == null ? 0 : this.cachedFontRenderer.getStringWidth(text.get());
     }
 
     @Override
     public int getHeight() {
-        return fontRenderer == null ? 0 : fontRenderer.getFontHeight();
+        return this.cachedFontRenderer == null ? 0 : this.cachedFontRenderer.getFontHeight();
     }
+
 }

@@ -9,7 +9,7 @@ import java.util.Arrays;
 
 @Getter
 @RequiredArgsConstructor
-public enum Alignment {
+public enum HudAlignment {
     TOP_RIGHT("Top Right", 1, 1),
     TOP_LEFT("Top Left", -1, 1),
     BOTTOM_RIGHT("Bottom Right", 1, -1),
@@ -19,7 +19,7 @@ public enum Alignment {
     private final int xOffset;
     private final int yOffset;
 
-    public static Alignment fromPosition(RenderContext context, int x, int y) {
+    public static HudAlignment fromPosition(RenderContext context, int x, int y) {
         Resolution scaledResolution = context.getResolution();
         int width = scaledResolution.getWidth();
         int height = scaledResolution.getHeight();

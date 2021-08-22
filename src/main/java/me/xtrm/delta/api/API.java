@@ -4,7 +4,6 @@ import me.xtrm.delta.api.client.ClientAPI;
 import me.xtrm.delta.api.launch.LauncherAPI;
 import me.xtrm.delta.api.plugin.IPluginContainer;
 import me.xtrm.delta.api.plugin.IPluginManager;
-import me.xtrm.delta.api.script.ScriptAPI;
 
 public interface API {
 
@@ -15,7 +14,5 @@ public interface API {
     ClientAPI getClient();
 
     LauncherAPI getLauncher();
-
-    ScriptAPI getScriptAPI();
 
 }

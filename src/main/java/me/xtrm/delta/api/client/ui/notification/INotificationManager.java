@@ -1,6 +1,6 @@
 package me.xtrm.delta.api.client.ui.notification;
 
-import me.xtrm.delta.api.client.ui.notification.impl.StaticNotificationTextRenderer;
+import me.xtrm.delta.api.client.ui.notification.defaults.StaticNotificationTextRenderer;
 
 @FunctionalInterface
 public interface INotificationManager {

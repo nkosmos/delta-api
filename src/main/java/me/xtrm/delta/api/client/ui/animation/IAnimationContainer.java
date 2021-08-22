@@ -3,9 +3,11 @@ package me.xtrm.delta.api.client.ui.animation;
 public interface IAnimationContainer {
 
     int getFrame();
+
     int getTotalFrames();
 
     int getDelayFrame();
+
     int getTotalDelayFrames();
 
     default float getPercentage() {
@@ -22,5 +24,9 @@ public interface IAnimationContainer {
     }
 
     void update();
+
+    default boolean isFinished() {
+        return getFrame() == getTotalFrames();
+    }
 
 }

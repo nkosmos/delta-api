@@ -1,4 +1,4 @@
-package me.xtrm.delta.api.client.ui.notification.impl;
+package me.xtrm.delta.api.client.ui.notification.defaults;
 
 import lombok.RequiredArgsConstructor;
 import me.xtrm.delta.api.client.ui.notification.INotificationTextRenderer;
