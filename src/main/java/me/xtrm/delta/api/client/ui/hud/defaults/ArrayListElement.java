@@ -83,7 +83,11 @@ public class ArrayListElement implements IMovableElement, IAlignableElement {
 
     @Override
     public void render(RenderContext context) {
-        this.toRender = IModuleManager.MODULE_REGISTRY.getAll().stream().filter(IModule::isVisible).filter(m -> m.getDisplayAnimation().isFinished()).collect(Collectors.toList());
+        this.toRender = IModuleManager.MODULE_REGISTRY.getAll()
+                .stream()
+                .filter(IModule::isVisible)
+                .filter(m -> m.isEnabled() || !m.getDisplayAnimation().isFinished())
+                .collect(Collectors.toList());
         this.cachedRenderContext = context;
 
         if (this.cachedFontRenderer == null) {

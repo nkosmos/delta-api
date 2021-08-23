@@ -28,7 +28,7 @@ public class TextElement implements IMovableElement {
     public final Setting<EnumFont> font = new Setting<>(rootGroup, "Font", EnumFont.NORMAL).values(EnumFont.values()).callback(this::updateFontRenderer);
     public final Setting<Boolean> dropShadow = new Setting<>(rootGroup, "Shadow", true);
     public final Setting<Boolean> background = new Setting<>(rootGroup, "Background", true);
-    public final Setting<ColorMode> textColorMode = new Setting<>(rootGroup, "Text Color Mode", ColorMode.CUSTOM).values(ColorMode.values());
+    public final Setting<ColorMode> textColorMode = new Setting<>(rootGroup, "Text Color Mode", ColorMode.CUSTOM).values(ColorMode.CUSTOM, ColorMode.RAINBOW, ColorMode.RAINBOW_WAVE, ColorMode.VIBRANT);
     public final Setting<Color> textCustomColor = new Setting<>(rootGroup, "Text Color", new Color(255, 255, 255, 255)).onlyIf(textColorMode.get()::isCustomizable);
 
     @Getter(AccessLevel.PRIVATE)
@@ -71,7 +71,7 @@ public class TextElement implements IMovableElement {
             this.cachedFontRenderer = context.getFontProvider().getFontRenderer(font);
         }
 
-        this.cachedFontRenderer.drawString(output, x, y, context.getColorProvider().getColor(textColorMode.get(), textCustomColor.get()).getRGB(), dropShadow.get());
+        this.cachedFontRenderer.drawString(output, x, y, textCustomColor.get().getRGB(), dropShadow.get());
     }
 
     private void updateText(ISetting<String> text, String newValue) {
